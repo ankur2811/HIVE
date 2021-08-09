@@ -1,0 +1,113 @@
+.navbar {
+  padding: 0.2em 1em;
+  vertical-align: baseline;
+
+  .svg {
+    margin: 0;
+    padding: 0;
+  }
+}
+.nav-profile1 {
+  display: none;
+}
+nav {
+  background-image: linear-gradient(to right, #127681, #10375c);
+  // background-color:rgb(60, 60, 73);
+  margin-bottom: 0%;
+  box-shadow: 0 0 7px 0 black;
+  min-height: 4rem;
+  .navbar-brand {
+    margin: 0;
+    padding: 0;
+    img {
+      width: 4rem;
+      height: 2.5rem;
+    }
+  }
+  li {
+    margin-right: 0.5em;
+  }
+}
+.nav-link {
+  color: white;
+  // color: #28ABB9;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.upcoming,
+.invitations {
+  display: none;
+}
+@media (max-width: 767px) {
+  ul {
+    svg {
+      display: none;
+    }
+  }
+  .navbar {
+    padding-left: 0;
+  }
+
+  .upcoming,
+  .invitations {
+    display: block;
+  }
+  .nav-profile2 {
+    display: none;
+  }
+  .nav-profile1 {
+    display: block;
+  }
+}
+@media (max-width: 992px) {
+  ul {
+    svg {
+      display: none;
+    }
+  }
+  .nav-link {
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .invitations {
+    display: block;
+  }
+
+  .nav-profile2 {
+    display: none;
+  }
+  .nav-profile1 {
+    display: inline;
+  }
+  .navbar {
+    padding-left: 0;
+  }
+  .nav-item {
+    padding-left: 1rem;
+  }
+}
+
+.navbar-toggler {
+  padding-bottom: 4px;
+}
+.active {
+  border-bottom: 2px solid white;
+}
+div.item {
+  vertical-align: top;
+  display: inline-block;
+  text-align: center;
+  width: fit-content;
+}
+
+.caption {
+  display: block;
+}
+.dropdown-menu {
+  right: 0;
+  left: auto;
+}
+.point {
+  cursor: pointer;
+}

@@ -1,0 +1,146 @@
+<div class="container1">
+  <form [formGroup]="searchBar" class="form-horizontal" (ngSubmit)="OnSearch()">
+    <div class="well search-result">
+      <div class="input-group">
+        <input
+          type="text"
+          class="bar form-control"
+          formControlName="Search"
+          placeholder="Search"
+        />
+        <span class="input-group-btn selector">
+          <select
+            class="form-control"
+            formControlName="tab"
+            label="title"
+            id="exampleFormControlSelect1"
+          >
+            <option ngValue="title" selected>Title</option>
+            <option ngValue="tags">Tags</option>
+          </select>
+        </span>
+        <span class="input-group-btn">
+          <button
+            type=""
+            class="btn btn-info btn-sm"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+            [disabled]="searchBar.invalid"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="22"
+              fill="currentColor"
+              class="bi bi-search"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+              />
+            </svg>
+
+          </button>
+        </span>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="container1" *ngIf="activities != undefined; else block">
+  <pagination-controls
+    class="pagination"
+    (pageChange)="handlePageChange($event)"
+  ></pagination-controls>
+  <div
+    class="list-group rounded"
+    *ngFor="
+      let activity of activities
+        | paginate
+          : {
+              itemsPerPage: 10,
+              currentPage: page,
+              totalItems: total
+            }
+    "
+  >
+    <a
+      [routerLink]="['/mainscreen/activity', activity.activityid]"
+      class="
+        list-group-item list-group-item-action
+        flex-column
+        align-items-start
+      "
+    >
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{ activity.title }}</h5>
+        <small>{{ userActivity.get_date(activity.date) }}</small>
+      </div>
+      <small>
+        <span
+          class="badge badge-pill"
+          *ngFor="let tags of activity.tags.split(',')" [style]="{'border':'2px solid'+userActivity.mp.get(tags)}"
+          >{{ tags }}</span
+        >
+      </small>
+    </a>
+  </div>
+</div>
+<ng-template #block>
+  <div class="loader">Loading...</div>
+</ng-template>
+
+<div
+  class="modal fade"
+  id="exampleModalCenter"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <br />
+        <br>
+        <div *ngIf="searchResult$ | async as searchResults; else block">
+          <div *ngIf="searchResults.length != 0; else block1">
+            <div
+              class="list-group rounded"
+              *ngFor="let activity of searchResults"
+            >
+              <a
+                [routerLink]="['/mainscreen/activity', activity.activityid]"
+                class="list-group-item list-group-item-action flex-column align-items-start"
+                data-dismiss="modal"
+              >
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">{{ activity.title }}</h5>
+                  <small>{{ userActivity.get_date(activity.date) }}</small>
+                </div>
+                <small>
+                  <span
+                    class="badge badge-info"
+                    *ngFor="let tags of activity.tags.split(',')"
+                    >{{ tags }}</span
+                  >
+                </small>
+              </a>
+            </div>
+          </div>
+          <ng-template #block1>
+            <div class="center"><i>No Activities Found...</i></div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

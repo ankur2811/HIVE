@@ -1,0 +1,100 @@
+<div class="card rounded mb-3" *ngIf="tab === 1">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-3">
+        <h6 class="mb-0">Email</h6>
+      </div>
+      <div class="col-sm-9 text-secondary">
+        {{ user.username }}
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-sm-3">
+        <h6 class="mb-0">Interests</h6>
+      </div>
+      <div class="col-sm-9 text-secondary">
+        <span
+          class="badge badge-pill"
+          *ngFor="let interest of user.tagList"
+          [style]="{ border: '2px solid' + userActivity.mp.get(interest) }"
+          >{{ interest }}</span
+        >
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-sm-3">
+        <h6 class="mb-0">Bio</h6>
+      </div>
+      <div class="col-sm-9 text-secondary">
+        {{ user.bio }}
+      </div>
+    </div>
+    <hr />
+
+    <div class="row">
+      <div class="col-sm-12">
+        <a
+          class="btn btn-info"
+          *ngIf="currentId === clickedId"
+          (click)="toggle()"
+          >Edit</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT -->
+<div class="card mb-3" *ngIf="tab === 0">
+  <div class="card-body">
+    <form
+      [formGroup]="profileform"
+      class="form-horizontal"
+      (onsubmit)="getSelectedValue()"
+    >
+      <div class="row mb-3">
+        <div class="col-sm-3">
+          <h6 class="mb-0">bio</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="bio"
+            value="abc"
+          />
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-sm-3">
+          <h6 class="mb-0">Area of Interest</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+          <ng-select
+            [items]="items"
+            bindLabel="name"
+            placeholder="Select Category"
+            formControlName="areaofinterest"
+            appendTo="body"
+            [multiple]="true"
+          >
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <button
+            type="submit"
+            class="btn btn-info btn-sm"
+            (click)="getSelectedValue()"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

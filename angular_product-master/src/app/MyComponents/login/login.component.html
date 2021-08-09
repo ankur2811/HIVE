@@ -1,0 +1,49 @@
+<div class="container">
+  <h3>Login</h3>
+</div>
+<br />
+<div class="container">
+  <form [formGroup]="loginform" class="form-horizontal" (ngSubmit)="OnSubmit()">
+    <div class="mb-3">
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        placeholder="Email"
+        formControlName="Email"
+      />
+    </div>
+
+    <div class="mb-3" *ngIf="this.forget===0">
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        placeholder="Password"
+        formControlName="Password"
+      />
+    </div>
+
+    <div class="mb-3">
+      <div class="buttons d-flex">
+        <a class='active'  (click)="onforget()"  *ngIf="forget===0" style="cursor: pointer;">Forget Password ?</a>
+        <div style="flex:1;">
+
+        </div>
+        <div *ngIf="this.forget===0">
+           <button type="" class="btn btn-info btn-sm" [disabled]="loginform.invalid">Login</button>
+        </div>
+      </div>
+
+    </div>
+    <div class="mb-3"*ngIf="forget===0">
+        <p>Dont have an Account ? &nbsp;<a routerLink="/register">Create Account</a></p>
+    </div>
+    <div class="mb-3" *ngIf="this.forget===1">
+      <div class="buttons d-flex justify-content-end ">
+      <button type="" class="btn btn-info btn-sm" (click)="getpass()">Submit</button>
+    </div>
+    </div>
+  </form>
+</div>

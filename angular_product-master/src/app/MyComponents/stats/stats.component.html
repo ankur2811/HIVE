@@ -1,0 +1,193 @@
+<div
+  class="section"
+  style="margin-top: 50px"
+  *ngIf="datasettag != null; else elseBlock"
+>
+  <div class="container">
+    <div class="row gutters-sm">
+      <div class="col-sm-6 mb-3">
+        <div class="container1">
+          <div class="row gutters-sm">
+            <div class="col-sm-6 mb-3">
+              <div class="card head h-100">
+                <div class="card-body">
+                  <div>
+                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-graph-up" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5z"/>
+                  </svg> -->
+                    <img
+                      src="../../../assets/MicrosoftTeams-image (7).png"
+                      alt=""
+                      height="16"
+                      width="16"
+                    />
+                  </div>
+                  <div><p>Total Activities</p></div>
+                  <div style="font-size: 20px; font-weight: bold">
+                    {{ datasettag.totalactivities }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 mb-3">
+              <div class="card head h-100">
+                <div class="card-body">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-check-circle-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+                    />
+                  </svg>
+                  <div><p>Total Active Activities</p></div>
+                  <div style="font-size: 20px; font-weight: bold">
+                    {{ datasettag.totalactive }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 mb-3">
+        <div class="container1">
+          <div class="row gutters-sm">
+            <div class="col-sm-6 mb-3">
+              <div class="card head h-100">
+                <div class="card-body">
+                  <div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-award-fill"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="m8 0 1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864 8 0z"
+                      />
+                      <path
+                        d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z"
+                      />
+                    </svg>
+                  </div>
+
+                  <div><p>Top Activity</p></div>
+                  <div
+                    class="actname"
+                    style="font-size: 20px; font-weight: bold"
+                  >
+                    {{ datasettag["top activity"].title }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 mb-3">
+              <div class="card head h-100">
+                <div class="card-body">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-people-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"
+                    />
+                    <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+                  </svg>
+                  <div><p>Total Volunteers</p></div>
+                  <div style="font-size: 20px; font-weight: bold">
+                    {{ datasettag.totaluser }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container11">
+    <div class="card card1">
+      <div class="heading" style="text-align: center">
+        <p style="font-size: 30px">Leaderboard</p>
+      </div>
+    </div>
+    <div class="row gutters-sm">
+      <div class="col-sm-6 mb-3">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="container">
+              <p style="text-align: center; font-size: 20px">Volunteers</p>
+            </div>
+            <app-leadersboard tab="perform"></app-leadersboard>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 mb-3">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="title">
+              <p style="text-align: center; font-size: 20px">Organizers</p>
+            </div>
+            <app-leadersboard tab="contri"> </app-leadersboard>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container11">
+    <div class="row gutters-sm">
+      <div class="col-sm-6 mb-3">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="container">
+              <p style="text-align: center; font-size: 20px">
+                Activities per tag
+              </p>
+            </div>
+            <app-graph
+              [chartlab]="chartlabtag"
+              [datalab]="datalabtag"
+              [tab]="'Tags'"
+            ></app-graph>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 mb-3">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="container">
+              <p style="text-align: center; font-size: 20px">
+                Activities per year
+              </p>
+            </div>
+            <app-graph
+              [chartlab]="chartlabyear"
+              [datalab]="datalabyear"
+              [tab]="'Year'"
+            ></app-graph>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #elseBlock style="margin: auto">
+  <div class="loader">Loading...</div>
+</ng-template>

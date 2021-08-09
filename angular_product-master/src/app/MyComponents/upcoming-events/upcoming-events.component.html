@@ -1,0 +1,30 @@
+<div class="col-md-12 grid-margin">
+  <div class="events">
+    <div class="card rounded">
+      <div class="card-header">
+        <h5 style="text-align: center">Upcoming</h5>
+      </div>
+      <div class="abc">
+        <div
+          class="card-body"
+          *ngIf="userActivity.get_registered().length === 0"
+        >
+          <p style="text-align: center">
+            <i> There are no upcoming events </i>
+          </p>
+        </div>
+        <a
+          *ngFor="let activity of userActivity.get_registered()"
+          [routerLink]="['/mainscreen/activity', activity.activityid]"
+        >
+          <div class="card-body">
+            <p>
+              <strong>{{ activity.title }}</strong> coming up in
+              {{ get_countdown(activity.date) }}
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLongTitle">Create an Event</h5>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="newActivity" (ngSubmit)="onCreate()">
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="exampleFormControlInput1"
+            formControlName="title"
+          />
+          <div *ngIf="newActivity.get('title').invalid && newActivity.get('title').touched">
+            <small class="text-danger"> This field is required. </small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Description</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="description"></textarea>
+          <div *ngIf="newActivity.get('description').invalid && newActivity.get('description').touched">
+            <small class="text-danger"> This field is required. </small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect2">Tags</label>
+          <select multiple class="form-control" id="exampleFormControlSelect2" formControlName="tags">
+            <option *ngFor="let v of tagsList(5)" [ngValue]="v.name">
+              {{v.name }}
+            </option>
+          </select>
+          <div *ngIf="newActivity.get('tags').invalid && newActivity.get('tags').touched">
+            <small class="text-danger"> This field is required. </small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="eventDate">Date </label><br />
+          <input type="date" id="eventDate" formControlName="date" min="{{c_date}}" />
+          <div *ngIf="newActivity.get('date').invalid && newActivity.get('date').touched">
+            <small class="text-danger"> This field is required. </small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="eventDate">Time </label><br />
+          <input type="time" id="eventTime" formControlName="time" min="16:00" max="22:00"/>
+          <div *ngIf="newActivity.get('time').invalid && newActivity.get('time').touched">
+            <small class="text-danger"> This field is required. </small>
+          </div>
+          <div *ngIf="flag===1">
+            <small class="text-danger">only future activities can be created </small>
+          </div>
+        </div>
+        <div class="form-group">
+          <p>Activity picture </p>
+          <input type="file"  #fileuploader formControlName="activityPic" value="abc" (change)="showPreview($event)" />
+          <div *ngIf="newActivity.get('activityPic').invalid && newActivity.get('activityPic').touched">
+            <small class="text-danger"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">
+              Close
+            </button>
+            <button type="submit" class="btn btn-info btn-sm" [disabled]="newActivity.invalid || isclicked===1">
+              Create
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

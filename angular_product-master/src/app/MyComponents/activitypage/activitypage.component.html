@@ -1,0 +1,243 @@
+<div class="outerdiv" *ngIf="activity$ | async as activity; else block">
+  <div class="row clearfix">
+    <div class="col-lg-7 col-md-12 left-box">
+      <ngb-carousel *ngIf="activity.morePics != null">
+        <ng-template ngbSlide>
+          <div class="rounded single_post">
+            <div class="img-post rounded .back">
+              <img [src]="activity.activityPic" />
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template ngbSlide *ngFor="let pic of activity.morePics.split(',')">
+          <div class="rounded single_post">
+            <div class="img-post rounded .back">
+              <img [src]="pic" width="100%" />
+            </div>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+      <div class="rounded single_post" *ngIf="activity.morePics === null">
+        <div class="img-post rounded .back">
+          <img [src]="activity.activityPic" width="100%" />
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-5 col-md-12 right-box">
+      <div
+        class="container"
+        style="float: right; border-bottom: 1px solid black"
+      >
+        <svg
+          style="float: right"
+          xmlns="http://www.w3.org/2000/svg"
+          *ngIf="activity.creatorid == current.id"
+          class="btn btn-info btn-sm"
+          data-toggle="modal"
+          data-target="#exampleModalLong2"
+          width="25"
+          height="25"
+          fill="black"
+          class="bi bi-pencil-square"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
+          />
+          <path
+            fill-rule="evenodd"
+            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+          />
+        </svg>
+      </div>
+
+      <h3>{{ activity.title }}</h3>
+      <div style="text-align: center">
+        <p>{{ activityservice.get_date(activity.date) }}</p>
+        <p>
+          {{
+            activityservice.tConvert(
+              activity.date.split("T")[1].substring(0, 5)
+            )
+          }}
+        </p>
+      </div>
+
+      <div>
+        <p class="mb-3 tx-14">{{ activity.description }}</p>
+      </div>
+      <div>
+        <span
+          class="badge badge-pill"
+          *ngFor="let tags of activity.tagList"
+          [style]="{ border: '2px solid' + activityservice.mp.get(tags) }"
+          >{{ tags }}</span
+        >
+      </div>
+      <br />
+
+      <div
+        class="d-flex align-items-center"
+        style="float: right; margin-bottom: 4px"
+      >
+        <img class="img-xs rounded-circle" [src]="activity.creatorPic" alt="" />
+        <a
+          (click)="setClickedProfile(activity.creatorid, activity.creatorPic)"
+          routerLink="/mainscreen/profile"
+        >
+          <p style="padding-top: 4px">
+            <strong> &nbsp;{{ activity.creatorName }}</strong>
+          </p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="exampleModalLong2"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true"
+  >
+    <div *ngIf="date < formatdate(activity.date)">
+      <app-edit-event [List]="activity" [id]="'ab'"></app-edit-event>
+    </div>
+    <div *ngIf="date > formatdate(activity.date)">
+      <app-edit-event [List]="activity" [id]="'bb'"></app-edit-event>
+    </div>
+  </div>
+
+  <div class="col-lg-8 col-md-12 left-box"></div>
+
+  <div class="row clearfix">
+    <div class="col-lg-7 col-md-12 left-box reviews">
+      <app-review [list]="participated" [activity]="activity"></app-review>
+    </div>
+
+    <div class="col-lg-5 col-md-12 right-box1">
+      <div
+        class="contain list"
+        style="padding-top: 10px; cursor: pointer"
+        *ngIf="activity.creatorid == current.id"
+        data-toggle="collapse"
+        data-target="#collapseExample"
+        aria-expanded="false"
+        aria-controls="collapseExample"
+      >
+        <div class="button">
+          <p *ngIf="!activity.attendenceMarked">
+            Registered
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-caret-down-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"
+              />
+            </svg>
+          </p>
+          <p *ngIf="activity.attendenceMarked">
+            Participants
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-caret-down-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"
+              />
+            </svg>
+          </p>
+        </div>
+      </div>
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+          <div class="container innerbutton">
+            <svg
+              style="float: right"
+              (click)="exportExcel(activity.title)"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-download"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
+              />
+              <path
+                d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
+              />
+            </svg>
+            <button
+              type="submit"
+              class="btn btn-info"
+              *ngIf="!activity.attendenceMarked"
+              (click)="onMark(activityid)"
+              [disabled]="attendees.length === 0"
+            >
+              Mark Attendence
+            </button>
+          </div>
+          <div class="container">
+            <div
+              class="list-group d-flex w-100 justify-content-between"
+              *ngIf="all.length === 0"
+            >
+              <i>There are No Participants</i>
+            </div>
+            <div class="list-group" *ngIf="all.length != 0">
+              <a class="list-group-item list-group-item-action">
+                <div
+                  class="d-flex w-100 justify-content-between"
+                  *ngFor="let participant of all"
+                >
+                  <strong
+                    ><p class="mb-1">{{ participant.name }}</p></strong
+                  >
+
+                  <small> {{ participant.username }}</small>
+
+                  <div
+                    class="showbuttons"
+                    *ngIf="
+                      activity.creatorid == current.id &&
+                      date > formatdate(activity.date)
+                    "
+                  >
+                    <input
+                      type="checkbox"
+                      *ngIf="!activity.attendenceMarked"
+                      (click)="mark_present(participant)"
+                    />
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-12 left-box reviewsmob">
+      <app-review [list]="participated" [activity]="activity"></app-review>
+    </div>
+  </div>
+</div>
+
+<ng-template #block>
+  <div class="loader">Loading...</div>
+</ng-template>

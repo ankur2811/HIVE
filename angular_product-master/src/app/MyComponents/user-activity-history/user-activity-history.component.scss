@@ -1,0 +1,36 @@
+::-webkit-scrollbar {
+  border-radius: 100px;
+  background-color: #aaacaa;
+  width: 0px;
+}
+
+.badge {
+  margin-right: 0.3rem;
+  background: transparent;
+  padding: 0.3rem 0.4rem;
+  border-style: 1.5px solid;
+}
+.rounded-pill {
+  background-color: #d9d9d9;
+  align-content: center;
+  padding: 1%;
+}
+.list-group {
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.card {
+  box-shadow: 0 0 5px 0 rgba(46, 47, 49, 0.2);
+}
+.rounded {
+  border-radius: 0.5rem !important;
+  margin-bottom: 0.7em;
+}
+h5 {
+  cursor: pointer;
+}
+
+a {
+  color: black;
+}

@@ -1,0 +1,9 @@
+<div class="outer" *ngIf="user!=null;else elseBlock">
+  <app-navbar></app-navbar>
+  <div class="routercontainer">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<ng-template  #elseBlock   style="margin: auto;">
+  <div class="loader" >Loading...</div>
+</ng-template>

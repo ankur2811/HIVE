@@ -1,0 +1,25 @@
+.modal-content {
+  background-color: black;
+  a {
+    color: #e2e8f0;
+    cursor: pointer;
+  }
+  .d-flex {
+    margin: 5%;
+  }
+  span {
+    color: #e2e8f0;
+  }
+}
+.profile-pic {
+  border-top: 6em solid #3797a4;
+
+  border-radius: 0.5em;
+  img {
+    margin-top: -5em;
+    background-color: whitesmoke;
+  }
+}
+h4 {
+  color: #00818a;
+}

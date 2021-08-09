@@ -1,0 +1,29 @@
+.btn {
+  background-color: #009999;
+  width: 80px;
+  height: 90%;
+}
+.container {
+  h3 {
+    color: #009999;
+  }
+}
+input {
+  width: 75%;
+  border:none;
+  border-bottom:1px solid #009999;
+  background: transparent;
+}
+input:focus
+{
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.buttons{
+  align-items:flex-end;
+  width: 75%;
+  .btn{
+    margin: 0 0 0 2%;
+  }
+}

@@ -1,0 +1,56 @@
+<div class="list-group rounded">
+  <div
+    class="d-flex w-100 justify-content-between"
+    *ngIf="List != undefined && List.length === 0"
+  >
+    <i>There are No Activities present</i>
+  </div>
+  <a
+    id="{{ id }}"
+    class="list-group-item list-group-item-action"
+    *ngFor="let activity of List"
+  >
+    <div
+      class="d-flex w-100 justify-content-between"
+      [routerLink]="['/mainscreen/activity', activity.activityid]"
+    >
+      <strong
+        ><h5 class="mb-1">{{ activity.title }}</h5></strong
+      >
+      <small>{{ get_date(activity.date) }}</small>
+    </div>
+    <div class="d-flex w-100 justify-content-between">
+      <div>
+        <small
+          class="badge badge-pill"
+          *ngFor="let tags of activity.tags.split(',')"
+          [style]="{ border: '2px solid' + userActivity.mp.get(tags) }"
+          >{{ tags }}</small
+        >
+      </div>
+
+      <span
+        class="badge rounded-pill"
+        *ngIf="
+          clickedUser === userid &&
+          userid === activity.creatorid &&
+          !activity.attendenceMarked &&
+          date > formatdate(activity.date)
+        "
+      >
+        Mark Attendees
+      </span>
+      <span
+        class="badge rounded-pill"
+        *ngIf="
+          clickedUser === userid &&
+          userid != activity.creatorid &&
+          !activity.reviewdone &&
+          date > formatdate(activity.date)
+        "
+      >
+        Review
+      </span>
+    </div>
+  </a>
+</div>

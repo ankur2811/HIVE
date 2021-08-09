@@ -1,0 +1,73 @@
+.panel {
+  position: relative;
+  background: transparent;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.panel-heading > label > .form-control {
+  display: inline-block;
+  margin-top: -8px;
+  margin-right: 0;
+  height: 30px;
+  padding: 0 15px;
+}
+.panel-heading ul.options > li > a {
+  color: #999;
+}
+.panel-heading ul.options > li > a:hover {
+  color: #333;
+}
+.panel-title a {
+  text-decoration: none;
+  display: block;
+  color: #333;
+}
+.panel-body {
+  background-color: #fff;
+  padding: 15px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.panel-body.panel-row {
+  padding: 8px;
+}
+.img-xs {
+  width: 25px;
+  height: 25px;
+}
+.rounded-circle {
+  border-radius: 50% !important;
+}
+img {
+  vertical-align: middle;
+  border-style: none;
+}
+.review {
+  padding-left: 20px;
+}
+.modal-lg,
+.modal,
+.modal-dialog,
+.modal-body {
+  max-width: 50vw !important;
+  min-height: 50vh;
+  max-height: 100vh;
+}
+.modal {
+  margin-top: 6%;
+  margin-left: 25%;
+}
+.reviewtitle {
+  padding-left: 7%;
+}
+.reviewtext {
+  padding-left: 1.5rem;
+}
+textarea {
+  width: 100%;
+}

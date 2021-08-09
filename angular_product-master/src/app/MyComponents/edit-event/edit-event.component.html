@@ -1,0 +1,49 @@
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+
+    <div class="modal-body" *ngIf="id==='ab'">
+      <form [formGroup]="updateActivity">
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Description</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+            formControlName="description">
+          </textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="eventDate">Date </label><br />
+          <input type="date" id="eventDate" formControlName="date" min="{{c_date}}" />
+        </div>
+
+        <div class="form-group">
+          <label for="eventDate">Time </label><br />
+          <input type="time" id="eventTime" formControlName="time" />
+          <div *ngIf="flag===1">
+            <small class="text-danger">only future activities can be created </small>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" (click)="close()">
+            Close
+          </button>
+          <button type="submit" class="btn btn-info btn-sm" (click)="update('before_event')"
+            [disabled]="isclicked===1">Update</button>
+        </div>
+
+      </form>
+    </div>
+    <div class="modal-body" *ngIf="id==='bb'">
+
+      <app-uploader></app-uploader>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" (click)="close()">
+          Close
+        </button>
+        <button type="submit" class="btn btn-info btn-sm" (click)="update('after_event')"
+          [disabled]="isclicked===1">Update</button>
+      </div>
+    </div>
+  </div>
+</div>

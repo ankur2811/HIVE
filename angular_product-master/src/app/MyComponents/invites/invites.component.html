@@ -1,0 +1,119 @@
+<div class="col-md-12 grid-margin">
+  <div class="events">
+    <div class="card rounded">
+      <div class="card-header">
+        <h5 style="text-align: center" *ngIf="tab === 'invite'">Invitations</h5>
+        <h5 style="text-align: center" *ngIf="tab != 'invite'">
+          Recent Participations
+        </h5>
+      </div>
+
+      <div class="abc" *ngIf="tab === 'invite'; else elseblock">
+        <div
+          class="card-body"
+          *ngIf="userActivity.get_invited().length === 0 && tab === 'invite'"
+        >
+          <p style="text-align: center">
+            <i> You currently have no invites </i>
+          </p>
+        </div>
+
+        <div
+          class="card-body"
+          *ngFor="let activity of userActivity.get_invited()"
+        >
+          <div class="details d-flex justify-content-between">
+            <div class="title">
+              <a [routerLink]="['/mainscreen/activity', activity.activityid]">
+                <strong>{{ activity.title }}</strong></a
+              >
+            </div>
+            <div class="d-flex align-items-center justify-content-between">
+              <button
+                class="btn btn-sm btn-outline-success"
+                (click)="On_Accepting(activity)"
+              >
+                Accept
+              </button>
+              <button
+                class="btn btn-sm btn-outline-danger"
+                (click)="On_Rejecting(activity)"
+              >
+                Reject
+              </button>
+            </div>
+          </div>
+
+          <div class="dropdown-menu">
+            <a class="dropdown-item" (click)="On_Accepting(activity)">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="green"
+                class="bi bi-check2"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"
+                />
+              </svg>
+              <p>Accept</p>
+            </a>
+            <a class="dropdown-item" (click)="On_Rejecting(activity)">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="red"
+                class="bi bi-x"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+                />
+              </svg>
+              <p>Reject</p>
+            </a>
+          </div>
+        </div>
+      </div>
+      <ng-template class="abc" #elseblock>
+        <div
+          class="card-body"
+          *ngIf="userActivity.get_recent().length === 0; else elseblock1"
+        >
+          <p style="text-align: center">
+            <i> You currently have no recent Activities </i>
+          </p>
+        </div>
+
+        <ng-template #elseblock1>
+          <div
+            class="card-body"
+            *ngFor="let activity of userActivity.get_recent()"
+          >
+            <div class="details d-flex justify-content-between">
+              <div class="title">
+                <a [routerLink]="['/mainscreen/activity', activity.activityid]">
+                  <strong>{{ activity.title }}</strong></a
+                >
+              </div>
+              <div class="d-flex align-items-center justify-content-between">
+                <div
+                  class="badge rounded-pill"
+                  *ngIf="activity.review === null"
+                >
+                  Review
+                </div>
+                <div>
+                  {{ userActivity.get_date(activity.date).substring(4, 10) }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ng-template>
+    </div>
+  </div>
+</div>

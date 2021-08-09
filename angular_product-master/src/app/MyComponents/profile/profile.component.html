@@ -1,0 +1,46 @@
+<div class="loader" *ngIf="user == null">Loading...</div>
+<div class="outer" *ngIf="user != null">
+  <div class="main-body">
+    <div class="row gutters-sm com">
+      <div class="d-md-block col-md-4 col-xl-3 left">
+        <div class="col-md-12 grid-margin">
+          <app-editprofile [user]="user"></app-editprofile>
+          <br />
+          <div class="card rounded">
+            <div class="card-body">
+              <div class="d-flex flex-column align-items-center text-center">
+                <h4>Total Scores</h4>
+                <h3>{{ user.score }}</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="bar rounded">
+          <app-viewprofile [user]="user"></app-viewprofile>
+        </div>
+        <div class="card rounded mb-3">
+          <div class="card-body">
+            <div class="container"><p>Participated Activities</p></div>
+            <app-user-activity-history
+              [List]="participated"
+              [id]="'ab'"
+              [userid]="currentId"
+            ></app-user-activity-history>
+          </div>
+        </div>
+        <div class="card rounded mb-3">
+          <div class="card-body">
+            <div class="container"><p>Organised Activities</p></div>
+            <app-user-activity-history
+              [id]="'abc'"
+              [List]="organized"
+              [userid]="currentId"
+            ></app-user-activity-history>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

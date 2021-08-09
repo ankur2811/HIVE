@@ -1,0 +1,67 @@
+<div class="loader" *ngIf="userdata.get_user() == null">Loading...</div>
+
+<div class="contain" *ngIf="userdata.get_user() != null" >
+  <div class="outer">
+    <div class="profile-page tx-13">
+
+      <div class="row profile-body">
+        <!-- left wrapper start -->
+        <div
+          class="d-none flex-start d-md-block col-md-4 col-xl-3 left-wrapper"
+        >
+            <div class="col-md-12 grid-margin">
+              <div class="card profile-pic rounded">
+
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img
+                      [src]="userdata.get_user().profilePicture"
+                      alt="Admin"
+                      class="rounded-circle"
+                      width="120"
+                      height="130"
+                    />
+                    <div class="mt-3">
+                        <a
+                          (click)="
+                            setClickedProfile(userdata.get_user().id, userdata.get_user().profilePicture)
+                          "
+                          routerLink="/mainscreen/profile"
+                        >
+                        <h4>
+                          {{ userdata.get_user().name }}
+                        </h4>
+                        </a>
+
+                    </div>
+                  </div>
+
+              </div>
+            </div>
+          <div>
+            <app-upcoming-events></app-upcoming-events>
+          </div>
+        </div>
+
+        <!-- left wrapper end -->
+
+        <!-- middle wrapper start -->
+
+        <div class="col-md-8 col-xl-6 middle-wrapper">
+          <div class="col-md-12 grid-margin mid">
+            <app-posts></app-posts>
+          </div>
+        </div>
+
+        <!-- middle wrapper end -->
+
+        <!-- right wrapper start -->
+        <div class="d-none flex-end d-xl-block col-xl-3 right-wrapper" >
+          <app-invites [tab]='"invite"'></app-invites>
+          <br>
+          <app-invites [tab]="'a'"></app-invites>
+        </div>
+        <!-- right wrapper end -->
+      </div>
+    </div>
+  </div>
+</div>

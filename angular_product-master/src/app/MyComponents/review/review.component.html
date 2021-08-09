@@ -1,0 +1,62 @@
+<section class="panel panel-default">
+  <div class="panel-body noradius padding-10">
+    <h4>
+      Reviews
+      <button
+        class="btn btn-info btn-sm"
+        style="float: right"
+        *ngIf="
+          activity.creatorid != user.id &&
+          find_participants() != -1 &&
+          find_reviews() === -1
+        "
+        data-toggle="collapse"
+        data-target="#reviewcollapse"
+        aria-expanded="false"
+        aria-controls="collapseExample"
+      >
+        Add a review
+      </button>
+    </h4>
+    <div class="profile-activity" *ngFor="let review of get_reviews()">
+      <div class="col-xs-10 col-sm-11">
+        <h6>
+          <img
+            class="img-xs rounded-circle"
+            [src]="review.profilePicture"
+            alt=""
+          />&nbsp; <a>{{ review.name }}</a>
+        </h6>
+        <p class="reviewtext">
+          {{ review.review }}
+        </p>
+      </div>
+
+      <div class="col-sm-12">
+        <hr class="half-margins" />
+      </div>
+    </div>
+    <div
+      class="card"
+      style="border: 0"
+      *ngIf="
+        activity.creatorid != user.id &&
+        find_participants() != -1 &&
+        find_reviews() === -1
+      "
+    >
+      <div class="collapse" id="reviewcollapse">
+        <form [formGroup]="reviewform" (ngSubmit)="post()">
+          <textarea formControlName="review" name="" id="" rows="5"></textarea>
+          <button
+            class="btn btn-info btn-sm"
+            style="float: right"
+            [disabled]="reviewform.invalid"
+          >
+            Post
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

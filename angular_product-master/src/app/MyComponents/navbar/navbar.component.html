@@ -1,0 +1,418 @@
+<nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarTogglerDemo03"
+    aria-controls="navbarTogglerDemo03"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="50"
+      height="40"
+      fill="currentColor"
+      class="bi bi-list"
+      viewBox="0 0 16 16"
+      click
+    >
+      <path
+        fill-rule="evenodd"
+        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+      />
+    </svg>
+  </button>
+
+  <a
+    class="navbar-brand"
+    routerLink="/mainscreen"
+    data-toggle="collapse"
+    aria-expanded="false"
+  >
+    <img src="../../../assets/hive3.png" width="25" height="25" />
+  </a>
+  <a class="nav-brand nav-profile1 point" data-toggle="collapse">
+    <img
+      class="profile"
+      [src]="userdata.get_user().profilePicture"
+      alt="Admin"
+      class="rounded-circle dropdown-toggle"
+      data-toggle="dropdown"
+      aria-haspopup="false"
+      width="36"
+      height="36"
+    />
+
+    <div class="dropdown-menu">
+      <a
+        class="dropdown-item"
+        routerLink="/mainscreen/profile"
+        (click)="setClickedProfile()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-person-circle"
+          viewBox="0 0 16 16"
+        >
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+          <path
+            fill-rule="evenodd"
+            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+          />
+        </svg>
+        Profile
+      </a>
+      <a class="dropdown-item">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-gear-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"
+          />
+        </svg>
+        Change Password
+      </a>
+      <a class="dropdown-item" routerLink="" (click)="SignOut()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-box-arrow-right"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"
+          />
+          <path
+            fill-rule="evenodd"
+            d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"
+          />
+        </svg>
+        Logout
+      </a>
+    </div>
+  </a>
+
+  <div
+    class="collapse navbar-collapse justify-content-end"
+    id="navbarTogglerDemo03"
+  >
+    <ul class="navbar-nav my-2 my-lg-0">
+      <li class="nav-item" [class.active]="router.url === '/mainscreen/stats'">
+        <a
+          class="nav-link"
+          routerLink="/mainscreen/stats"
+          data-toggle="collapse"
+          data-target="#navbarTogglerDemo03"
+          aria-expanded="false"
+        >
+          <div class="item">
+            <svg
+              class="inv"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-bar-chart-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"
+              />
+            </svg>
+            <span class="caption">Dashboard</span>
+          </div>
+        </a>
+      </li>
+      <li
+        class="nav-item invitations"
+        [class.active]="router.url === '/mainscreen/invited'"
+      >
+        <a
+          class="nav-link"
+          routerLink="/mainscreen/invited"
+          data-toggle="collapse"
+          data-target="#navbarTogglerDemo03"
+          aria-expanded="false"
+          >Invitations</a
+        >
+      </li>
+      <li
+        class="nav-item upcoming"
+        [class.active]="router.url === '/mainscreen/upcoming'"
+      >
+        <a
+          class="nav-link"
+          routerLink="/mainscreen/upcoming"
+          data-toggle="collapse"
+          data-target="#navbarTogglerDemo03"
+          aria-expanded="false"
+          >Upcoming</a
+        >
+      </li>
+
+      <li
+        class="nav-item past-activities"
+        [class.active]="router.url === '/mainscreen/past-activities'"
+      >
+        <a
+          class="nav-link"
+          routerLink="/mainscreen/past-activities"
+          data-toggle="collapse"
+          data-target="#navbarTogglerDemo03"
+          aria-expanded="false"
+          ><div class="item">
+            <svg
+              class="inv"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-calendar-check-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zm-5.146-5.146-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708z"
+              />
+            </svg>
+            <span class="caption">Past Activities</span>
+          </div></a
+        >
+      </li>
+
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          href="#"
+          data-toggle="modal"
+          data-target="#exampleModalLong"
+          ><div class="item">
+            <svg
+              class="inv"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-plus-square-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"
+              />
+            </svg>
+            <span class="caption">Create an Activity</span>
+          </div></a
+        >
+      </li>
+    </ul>
+  </div>
+  <a class="nav-brand nav-profile2 point">
+    <img
+      class="profile"
+      [src]="userdata.get_user().profilePicture"
+      alt="Admin"
+      class="rounded-circle dropdown-toggle"
+      data-toggle="dropdown"
+      aria-haspopup="false"
+      width="36"
+      height="36"
+    />
+
+    <div class="dropdown-menu">
+      <a
+        class="dropdown-item"
+        routerLink="/mainscreen/profile"
+        (click)="setClickedProfile()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-person-circle"
+          viewBox="0 0 16 16"
+        >
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+          <path
+            fill-rule="evenodd"
+            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+          />
+        </svg>
+        Profile
+      </a>
+      <a
+        class="dropdown-item point"
+        data-toggle="modal"
+        data-target="#exampleModalLongpass"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-gear-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"
+          />
+        </svg>
+        Change Password
+      </a>
+      <a class="dropdown-item" routerLink="" (click)="SignOut()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-box-arrow-right"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"
+          />
+          <path
+            fill-rule="evenodd"
+            d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"
+          />
+        </svg>
+        Logout
+      </a>
+    </div>
+  </a>
+</nav>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModalLong"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true"
+>
+  <app-create-event></app-create-event>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModalLongpass"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Change Password</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="onSubmit()" [formGroup]="changePassword">
+          <div class="form-group col">
+            <label>New Password</label>
+            <input
+              type="password"
+              formControlName="password"
+              class="form-control"
+            />
+            <div
+              *ngIf="
+                changePassword.get('password').errors &&
+                changePassword.get('password').touched
+              "
+            >
+              <div class="text-danger">Password is required</div>
+            </div>
+          </div>
+          <div class="form-group col">
+            <label>Confirm Password</label>
+            <input
+              type="password"
+              formControlName="confirmPassword"
+              class="form-control"
+            />
+            <div
+              *ngIf="
+                changePassword.get('confirmPassword').errors &&
+                changePassword.get('confirmPassword').touched
+              "
+            >
+              <div
+                class="text-danger"
+                *ngIf="changePassword.get('confirmPassword').errors.required"
+              >
+                Confirm Password is required
+              </div>
+              <div
+                class="text-danger"
+                *ngIf="changePassword.get('confirmPassword').errors.mustMatch"
+              >
+                Passwords must match
+              </div>
+            </div>
+          </div>
+          <div
+            *ngIf="submitted"
+            class="
+              alert alert-success alert-dismissible
+              fade
+              show
+              form-group
+              col
+            "
+            role="alert"
+          >
+            Password changed successfully!
+            <button
+              type="button"
+              class="close"
+              data-dismiss="alert"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="form-group">
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary btn-sm"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="submit"
+                class="btn btn-info btn-sm"
+                [disabled]="changePassword.invalid || submitted"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
